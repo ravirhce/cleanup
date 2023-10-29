@@ -12,3 +12,5 @@ kubectl delete  sa app-service -n frontend
 kubectl delete ns frontend
 kubectl delete deployment apl -n ckad00014
 kubectl delete ns ckad00014
+kubectl delete deployment web-rolling -n default
+kubectl delete cronjobs.batch hello
