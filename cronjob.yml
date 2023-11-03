@@ -1,0 +1,23 @@
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ppi
+spec:
+  schedule: "*/5 * * * *"
+  failedJobsHistoryLimit: 4
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 9
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox:1.28
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: Never

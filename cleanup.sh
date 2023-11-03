@@ -14,3 +14,6 @@ kubectl delete deployment apl -n ckad00014
 kubectl delete ns ckad00014
 kubectl delete deployment web-rolling -n default
 kubectl delete cronjobs.batch hello
+kubectl delete pod mypod
+kubectl delete pvc task-pv-claim
+kubect	delete pv task-pv-volume
