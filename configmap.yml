@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logconf
+  namespace: default
+data:
+    fluent.conf: |
+      <source>
+      @type tail
+      path /tmp/log/input.log
+      read from head true
+      tag log.data
+      format none
+      </source>
+      <match **>
+      @type file
+        path /tmp/log/output
+      </match>

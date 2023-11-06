@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-007
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: logger-123
+        image: busybox
+        command: ['sh', '-c', 'while true; do echo " i luv cncf" >> /tmp/log/input.log;sleep 10;done']
+        volumeMounts:
+        - name: shared-logs
+          mountPath: /tmp/logs
+      - name: adapter-zen
+        image: nginx
+        volumeMounts:
+        - name: shared-logs
+          mountPath: /tmp/logs
+        - name: config-volume
+          mountPath: /flutend/etc
+      volumes:
+      - name: shared-logs
+        emptyDir: {}
+      - name: config-volume
+        configMap:
+          name: logconf
