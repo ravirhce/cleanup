@@ -16,4 +16,6 @@ kubectl delete deployment web-rolling -n default
 kubectl delete cronjobs.batch hello
 kubectl delete pod mypod
 kubectl delete pvc task-pv-claim
-kubect	delete pv task-pv-volume
+kubectl	delete pv task-pv-volume
+kubectl delete deployment deployment-007
+kubectl delete deployment nginx-fix
